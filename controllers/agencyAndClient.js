@@ -1,6 +1,6 @@
-import mongodb from 'mongodb'
+import mongodb, { ObjectId } from 'mongodb'
 import dotenv from 'dotenv';
-import { AgencyValidation } from '../utils/schema';
+import { AgencyValidation, ClientUpdateValidation } from '../utils/schema';
 
 dotenv.config();
 
@@ -37,7 +37,7 @@ export const createAgency = async (req, res) => {
 
 
     //if clients are avaliable
-    if(clients && clients.length){
+    if (clients && clients.length) {
       const clientCollection = dboCon.db('demo').collection('client');
 
       await Promise.all(
@@ -59,3 +59,64 @@ export const createAgency = async (req, res) => {
     await session.endSession();
   }
 };
+
+export const updateClient = async (req, res) => {
+  const session = dboCon.startSession();
+  session.startTransaction(transactionOptions);
+  try {
+    const { error, value: data } = ClientUpdateValidation.validate(req.body);
+    if (error) {
+      await session.abortTransaction();
+      return res.badRequest(error.message);
+    }
+
+    const { agencyObjectId, clientObjectId, client } = data;
+
+    const agencyCollection = dboCon.db('demo').collection('agency');
+    const _agency = await agencyCollection.findOne({ "_id": ObjectId(agencyObjectId) });
+
+    if (!_agency) {
+      await session.abortTransaction();
+      return res.badRequest('wrong agency Id');
+    }
+
+    const clientCollection = dboCon.db('demo').collection('client');
+    const _client = await clientCollection.findOne({ "_id": ObjectId(clientObjectId),"agencyId":agencyObjectId });
+
+    if (!_client) {
+      await session.abortTransaction();
+      return res.badRequest('this client is not belong to this agency');
+    }
+
+    const query = { "_id": ObjectId(clientObjectId)};
+    const update = { $set:client};
+    const options = { upsert: true };
+
+    await clientCollection.updateOne(query,update,options);
+
+    await session.commitTransaction();
+    return res.ok("client updated");
+  } 
+  catch (error) {
+    await session.abortTransaction();
+    return res.internalServerError();
+  }
+  finally {
+    await session.endSession();
+  }
+}
+
+
+export const getMaxTotalBillData = async(req,res)=>{
+  try {
+
+    const clientCollection = dboCon.db('demo').collection('client');
+    const _client = clientCollection.find().sort({"totalBill":-1}).limit(1)
+
+    console.log(_client);
+
+    return res.ok();
+  }  catch (error) {
+    return res.internalServerError();
+  }
+}

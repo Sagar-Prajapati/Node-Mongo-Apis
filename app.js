@@ -24,6 +24,7 @@ app.use((req, res, next) => {
 
 app.use(apiResponses);
 app.use('/v1/api', agencyRoutes);
+app.use('/',(req,res)=>{return res.ok('this app is running')});
 
 app.use((err, req, res, next) => {
   if (!err.output) {

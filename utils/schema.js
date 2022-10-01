@@ -24,3 +24,9 @@ export const AgencyValidation = Joi.object({
   clients: Joi.array().items(ClientValidation)
 })
 
+export const ClientUpdateValidation =Joi.object({
+  agencyObjectId:Joi.string().required(),
+  clientObjectId:Joi.string().required(),
+  client: ClientValidation
+})
+
