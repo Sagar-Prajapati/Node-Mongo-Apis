@@ -1,0 +1,9 @@
+# Dependency directories
+node_modules/
+
+# dotenv environment variables file
+.env
+.env.test
+
+#Project specific
+package-lock.json
