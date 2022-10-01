@@ -48,20 +48,17 @@
  
  const server = http.createServer(app);
 
-//  dbo.connectToServer((err)=>{
-//   if(err){
-//       console.error(err);
-//       process.exit();
-//   }
-// });
+ dbo.connectToServer((err)=>{
+  if(err){
+      console.error(err);
+      process.exit();
+  }
+});
 
-
- // Start the Express server
- server.on('error', onError);
- server.on('listening', onListening);
- server.listen(port);
- console.log(`started on port ${port}`);
-
+server.on('error', onError);
+server.on('listening', onListening);
+server.listen(port);
+console.log(`started on port ${port}`);
 
 
 
