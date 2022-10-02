@@ -15,7 +15,7 @@ const dbo = {
             if(err || !db){
                 return callback(err);
             }
-        dbConnection = db.db('test');
+        dbConnection = db.db('testusers');
         console.log('Successfully connected to MongoDB');  
         return callback();
     });
