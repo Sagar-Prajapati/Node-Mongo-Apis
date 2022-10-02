@@ -4,7 +4,7 @@
 
 .env credentials (for testing purpose only)
 
-**ATLAS_URI='mongodb+srv://sagar-prajapati:Sagar123@cluster0.jk1xmmb.mongodb.net/?retryWrites=true&w=majority'** \
+**ATLAS_URI='mongodb+srv://sagar-prajapati:Sagar123@cluster0.jk1xmmb.mongodb.net/?retryWrites=true&w=majority'**
 
 **JWT_SECRET=ThisISmySecret**
 
@@ -12,11 +12,11 @@
 
 (for testing purpose only)
 
-link: https://cloud.mongodb.com/ \
+link: https://cloud.mongodb.com/
 
-username: tawgao@garbagetrend.style \
+username: tawgao@garbagetrend.style
 
-password: Sagar@123 \
+password: Sagar@123
 
 #### Git Repository Link
 
@@ -28,10 +28,10 @@ password: Sagar@123 \
 
 **APIs Created**
 
-1-Create Agency and Client \
+1-Create Agency and Client
 
 POST
-https://zerozilla-node-task.herokuapp.com/v1/api/create-agency \
+https://zerozilla-node-task.herokuapp.com/v1/api/create-agency
 
 _authorization_ : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoic2FnYXIgdGVzdCIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTY2NDY4NTAyOH0.k78gw7d6xLz9lu-4y_y97V6KFbhpb8suVfPhEZNNQrA"
 
