@@ -25,10 +25,10 @@ export const createAgency = async (req, res) => {
       return res.badRequest(error.message);
     }
 
-    const { agencyId, Name, address1, address2, city, phoneNo, clients } = data;
+    const { agencyId, name, address1, address2, city, phoneNo, clients } = data;
 
     const newAgency = {
-      agencyId, Name, address1, address2, city, phoneNo
+      agencyId, name, address1, address2, city, phoneNo
     }
 
     const agencyCollection = dboCon.db('demo').collection('agency');
