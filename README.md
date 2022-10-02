@@ -67,7 +67,7 @@ body
 
 2 - Update CLient \
 
-POST
+PUT  
 https://zerozilla-node-task.herokuapp.com/v1/api/update-client
 
 _authorization_ : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoic2FnYXIgdGVzdCIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTY2NDY4NTAyOH0.k78gw7d6xLz9lu-4y_y97V6KFbhpb8suVfPhEZNNQrA"
